@@ -1,2 +1,3 @@
-# Algoposlednipokus
-Test1,Test2 a zkouska na algo
+Algoritmizase Mendelu
+
+Tady budou kody na algo
