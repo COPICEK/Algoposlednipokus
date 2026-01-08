@@ -1,0 +1,23 @@
+# IntelliJ IDEA
+.idea/
+
+
+# CMake build files
+cmake-build-*/
+build/
+# Build artifacts
+*.json
+
+
+
+# CLion specific
+.idea/
+*.obj
+*.exe
+*.log
+*.yaml
+*.ninja
+
+
+# Backup & cache files
+*.cache
