@@ -23,7 +23,7 @@ int main(int argc, char*argv[]) {
   string vstup = argv[1];
 
   bool jeCislo = true;
-  int soucet = 1;
+  int soucet = 0;
   int i = 0;
 
 
@@ -50,8 +50,8 @@ int main(int argc, char*argv[]) {
   else {
    cout<<"Chyba"<<endl;
   }
- return 0;
+
  }
 
-
+ return 0;
 }
