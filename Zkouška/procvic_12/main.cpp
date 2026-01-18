@@ -81,9 +81,51 @@ struct Uzel {
  int hodnota;
  Uzel*levy;
  Uzel*pravy;
- Uzel*dalsi;
+
 };
 
-int main() {
+void vloz(Uzel*& hlava,int cislo) {
+ if(hlava == nullptr) {
+  hlava = new Uzel();
+  hlava->hodnota = cislo;
+  hlava->levy = nullptr;
+  hlava->pravy = nullptr;
+
+ }
+ else if(cislo < hlava->hodnota) {
+  vloz(hlava->levy,cislo);
+
+ }
+ else{
+  vloz(hlava->pravy,cislo);
+ }
 
 }
+
+void vypisListy(Uzel*hlava) {
+ if(hlava !=nullptr) {
+  vypisListy(hlava->pravy);
+  if(hlava->levy == nullptr && hlava->pravy == nullptr) {
+    cout<< hlava->hodnota<<" ";
+  }
+  vypisListy(hlava->levy);
+ }
+}
+
+
+int main() {
+ Uzel*hlava = nullptr;
+ int vstup;
+
+ cout<<"hej: " <<endl; // pro zkousku+
+ while(cin>>vstup && vstup != 0) {
+  vloz(hlava,vstup);
+ }
+
+ vypisListy(hlava);
+ cout<<endl;
+
+ return 0;
+}
+
+
