@@ -12,7 +12,7 @@ Pokud parametr nebude zadán, program vypíše "Neni vstup".
 Pokud parametr nebude číslo, vypíše chybu na chybový výstup (c
 Omezení: Nepoužívejte break ani continue.
 
-*/
+
 
 int main(int argc,char*argv[]) {
 
@@ -55,4 +55,59 @@ int main(int argc,char*argv[]) {
         cout<<"Chyba nezadali jste cislo spravne"<<endl;
     }
     return 0;
+}
+*/
+
+
+
+/*
+Napište kompletní program v jazyce C++, který převezme
+číslo z příkazové řádky.
+Program ověří, zda jde o validní celé číslo.
+Pokud ano, najde a vypíše NEJVĚTŠÍ ČÍSLICI, která se v čísle nachází.
+(Pro číslo -4182 je největší číslice 8).
+(Pro číslo 105 je největší číslice 5).
+(Pro číslo 0 je největší číslice 0).
+Pokud parametr nebude zadán, vypíše "Neni vstup".
+Pokud parametr nebude číslo, vypíše chybovou hlášku na "cerr".
+Omezení: Nepoužívejte break, continue, pole ani funkci max().
+*/
+
+int main(int argc, char*argv[]) {
+
+    if(argc > 1) {
+        string vstup = argv[1];
+        int maxCislo = -1;
+        int zacatek = 0;
+        bool jeCislo = true;
+
+
+        if(vstup[0]== '-') {
+            zacatek = 1;
+
+            if(vstup.length() == 1) {
+                jeCislo = false;
+            }
+        }
+
+        while(zacatek < vstup.length() && jeCislo) {
+            char znak = vstup[zacatek];
+            if(znak >= '0' && znak <= '9') {
+                int cislice = (znak -'0');
+
+                if(cislice > maxCislo) {
+                    maxCislo = cislice;
+                }
+            }
+            zacatek++;
+        }
+
+        if(jeCislo) {
+            cout<<"Max cislice je: "<< maxCislo;
+        }
+    }
+    else {
+        cout<<"Nezadal jsi cislo spavne";
+    }
+
 }
