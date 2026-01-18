@@ -86,16 +86,22 @@ int main(int argc, char*argv[]) {
                         if(slovo.length() > nejslovo.length()) {
                             nejslovo = slovo;
                         }
-                        else {
-                            slovo = slovo+znak;
-                        }
                     }
+                    slovo = "";
+                }
+                else {
+                    slovo = slovo + znak;
                 }
             }
+            cout<<"Nejdelsi slovo s prvnim velkym pismenem: "<<nejslovo <<endl;
+            soubor.close();
         }
-
-
-
+        else {
+            cout<<"soubor se nepodarilo otevrit" <<endl;
+        }
     }
-
+    else {
+        cout<< "Nezadano jmeno souboru" << endl;
+    }
+return 0;
 }
