@@ -729,11 +729,21 @@ zde algoritmus sekvenčního hledání.
 */
 
 
-struct Uzel {
+bool jePalindrom(string slovo) {
+ int levy = 0;
+ int pravy = slovo.length() -1;
 
-};
 
+ while(levy <pravy) {
 
+  if(slovo[levy] != slovo[pravy]) {
+   return false;
+  }
+  levy++;
+  pravy--;
+ }
+ return true;
+}
 
 
 int main() {

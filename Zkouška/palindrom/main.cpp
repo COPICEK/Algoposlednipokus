@@ -6,36 +6,23 @@ její parametr je palindromem (je stejný při čtení zleva i zprava). Aplikujt
 zde algoritmus sekvenčního hledání.
 */
 
-struct Uzel {
-    char Znak;
-
-    Uzel*dalsi;
-    Uzel*pred;
-};
-
-bool udelej(Uzel*& hlava, char znak) {
-    if (hlava == nullptr) return true;
-
-    Uzel*levy = hlava;
-    Uzel*pravy = hlava;
+bool jePalindrom(string slovo) {
+ int levy = 0;
+ int pravy = slovo.length() -1;
 
 
-    while(pravy->dalsi != nullptr) {
-        pravy = pravy->dalsi;
-    }
+ while(levy <pravy) {
 
-    while(levy != pravy && levy->pred != pravy) {
-        if (levy->Znak != pravy->Znak) {
-            return false;
-        }
-
-        levy = levy->dalsi;
-        pravy = pravy->pred;
-
-    }
-
-    return true;
+  if(slovo[levy] != slovo[pravy]) {
+   return false;
+  }
+  levy++;
+  pravy--;
+ }
+ return true;
 }
+
+
 
 int main() {
 
