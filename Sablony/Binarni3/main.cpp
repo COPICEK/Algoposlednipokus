@@ -15,7 +15,7 @@ int main() {
     temp.close();
 
     // --- TEĎ ZAČÍNÁ TVŮJ ÚKOL ---
-    
+
     // 1. Otevřu zdroj pro čtení
     ifstream vstup("cisla.bin", ios::binary);
 
