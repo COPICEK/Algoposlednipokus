@@ -726,7 +726,7 @@ return 0;
 Napište logickou funkci, která určí, zda znakový řetězec zadaný jako
 její parametr je palindromem (je stejný při čtení zleva i zprava). Aplikujte
 zde algoritmus sekvenčního hledání.
-*/
+
 
 
 bool jePalindrom(string slovo) {
@@ -748,4 +748,477 @@ bool jePalindrom(string slovo) {
 
 int main() {
 
+}
+
+*/
+
+
+/*Na standardním vstupu se nachází řada řetězců. Vypište tuto řadu na standardní výstup
+ *(každý řetězec na samostatný řádek) seřazenou podle délek vzestupně. Pro řazení použijte
+ *metodu s časovou složitostí lepší než kvadratickou.
+
+struct Slovo{
+ string retezec;
+ Slovo*levy;
+ Slovo*pravy;
+
+};
+
+void strom(Slovo*&hlava, string slovo) {
+ if(hlava == nullptr) {
+  hlava = new Slovo();
+  hlava->retezec = slovo;
+  hlava->levy = nullptr;
+  hlava->pravy = nullptr;
+ }
+
+ else if(slovo.length() < hlava->retezec.length()) {
+  strom(hlava->levy,slovo);
+ }
+ else {
+  strom(hlava->pravy,slovo);
+ }
+}
+
+void vzestupne(Slovo*hlava){
+ if(hlava != nullptr) {
+  vzestupne(hlava->levy);
+  cout<<hlava->retezec << endl;
+  vzestupne(hlava->pravy);
+  }
+ }
+
+int main() {
+ Slovo*hlava = nullptr;
+ string vstup;
+
+ while(cin>>vstup) {
+  strom(hlava,vstup);
+ }
+ vzestupne(hlava);
+
+
+
+}
+
+*/
+
+/*
+Na standardním vstupu je řada celých čísel. Tato čísla představují hodnoty dvou
+čtvercových matic řádu N zadaných po řádcích. Vaším úkolem je načíst tyto dvě matice,
+sečíst je a výsledek vypsat na standardní výstup. Řád matic N (počet řádků/sloupců)
+je zadán jako první parametr z příkazového řádku. Předpokládejte, že čísel na vstupu je
+vždy dostatečné množství.
+
+
+
+int main(int argc, char*argv[]) {
+
+ if(argc>2) {
+  int N = atoi(argv[1]);
+
+  int** matice1 = new int*[N];
+  int** matice2 = new int*[N];
+
+  for(int i = 0; i<N;i++) {
+   matice1[i] = new int[N];
+   matice2[i] = new int[N];
+  }
+
+
+  for(int i=0;i<N;i++) {
+   for(int j=0;j<N;j++) {
+    cin>>matice1[i][j];
+   }
+  }
+
+  for(int i=0;i<N;i++) {
+   for(int j=0;j<N;j++) {
+    cin>>matice2[i][j];
+   }
+  }
+
+  for(int i=0;i<N;i++) {
+   for(int j=0;j<N;j++) {
+    cout<<"secteni: " << matice1[i][j] + matice2[i][j] <<endl;
+   }
+  }
+ }
+ return 0;
+}
+
+
+*/
+
+
+/*
+* Na standardním vstupu se nachází posloupnost šestic čísel v intervalu od
+* 1 do 49 představujících tažená čísla Sportky za určité období. Napište program,
+* který řeší obě následující dílčí úlohy:
+
+Zjistěte a vypište na standardní výstup, kolikrát byla v
+celém zadaném období tažena jednotlivá čísla.
+Z příkazového řádku je zadána šestice vsazených čísel. Zjistěte,
+kolikrát tato šestice vyhrála v zadaném období první nebo druhé pořadí (6 nebo 5 shodných čísel).
+
+
+
+
+int main(int argc,char*argv[]) {
+ int pocty[50] = {};
+ bool tip[50] = {};
+ int t[6];
+ int vyhry = 0;
+
+ if(argc> 6) {
+  for(int i=0;i<7;i++) {
+   tip[atoi(argv[i])]=true;
+  }
+  while(cin>>t[0] >>t[1]>>t[2]>>t[3]>>t[4]>>t[5]) {
+   int uhodnota =0;
+   for(int i =0;i<6;i++) {
+    pocty[t[i]]++;
+    if(tip[i]) uhodnota++;
+   }
+   if(uhodnota >4) {
+    vyhry++;
+   }
+  }
+  for(int i=0;i<50;i++) {
+   cout<< i << " " << pocty[i] <<endl;
+  }
+  cout<<vyhry<<endl;
+ }
+ else {
+  cout<<"spatny pocet parametru" <<endl;
+ }
+ return 0;
+
+
+
+
+}
+*/
+
+
+/*
+Napište proceduru v jazyce C++, jejímž parametrem je ukazatel na dvojsměrně svázaný
+lineární dynamický seznam s celočíselnými datovými složkami.
+Procedura přeskládá seznam tak, aby záporná čísla byla na konci.
+Na výsledném pořadí čísel v seznamu nezáleží, důležité je pouze zmíněné
+kritérium (tj. záporná čísla na konci). Definujte všechny potřebné datové typy.
+
+
+
+struct Uzel {
+ int data;
+ Uzel*dalsi;
+ Uzel*prev;
+};
+
+void preskladej(Uzel*hlava) {
+
+ Uzel*levy = hlava;
+ Uzel*pravy = hlava;
+
+ while(pravy->dalsi != nullptr) {
+  pravy = pravy->dalsi;
+ }
+
+
+ while(levy != pravy && levy->prev != pravy) {
+
+  if(levy->data > 0 ) {
+   levy = levy->dalsi;
+  }
+  else if(pravy->data < 0) {
+   pravy = pravy->prev;
+  }
+  else {
+   int docastna = levy->data;
+   levy->data = pravy->data;
+   pravy->data = docastna;
+  }
+ }
+}
+
+
+void vypisseznam(Uzel*hlava) {
+ if(hlava != nullptr) {
+  cout<<hlava->data<< " ";
+  hlava = hlava->dalsi;
+ }
+ cout<<endl;
+}
+
+*/
+
+/*
+Napište program v jazyce C++ řešící následující úlohu:
+Na standardním vstupu se nachází řada dvojic údajů: rodné číslo studenta
+a počet zbývajících registračních poukázek (jednobajtové přirozené číslo).
+Uložte tato data do uspořádaného binárního stromu, kritérium řazení je rodné
+číslo studenta. Následně vypište seřazený strom na standardní výstup.
+Způsob řazení (vzestupně nebo sestupně) je dán prvním parametrem v
+příkazovém řádku (předpokládejte, že se zadává písmeno „v“ nebo „s“).
+Není-li parametr zadán, předpokládejte vzestupné řazení.
+
+
+
+struct Zak {
+ int rodcis;
+ int pocet;
+ Zak*levy;
+ Zak*pravy;
+
+};
+
+void vloz(Zak*hlava, int rod, int pocetp) {
+ if(hlava == nullptr) {
+  hlava = new Zak();
+  hlava->rodcis = rod;
+  hlava->pocet = pocetp;
+  hlava->levy = nullptr;
+  hlava->pravy = nullptr;
+  return;
+ }
+
+ if(hlava->rodcis < rod) {
+  vloz(hlava->levy,rod,pocetp);
+ }
+ else {
+  vloz(hlava->pravy, rod,pocetp);
+ }
+
+}
+
+
+void Sestupne(Zak*hlava) {
+ if(hlava !=nullptr) {
+  Sestupne(hlava->pravy);
+  cout<<hlava->rodcis << hlava->pocet <<endl;
+  Sestupne(hlava->levy);
+ }
+}
+
+void Vzestupne(Zak*hlava) {
+ if(hlava != nullptr) {
+  Vzestupne(hlava->levy);
+  cout<<hlava->rodcis << hlava->pocet <<endl;
+  Vzestupne(hlava->pravy);
+ }
+}
+
+int main(int argc, char* argv[]) {
+ char razeni = 'v';
+
+ if(argc > 1) {
+  Zak*hlava = nullptr;
+
+  int rocde;
+  int pocetpo;
+  razeni = argv[1][0];
+
+
+
+  while(cin>>rocde>>pocetpo) {
+   vloz(hlava,rocde,pocetpo);
+  }
+  if(razeni == 'v') {
+   Vzestupne(hlava);
+  }
+  if(razeni == 's') {
+   Sestupne(hlava);
+  }
+ }
+ else {
+  cout<<"nezadane razteni";
+ }
+
+
+
+return 0;
+}
+
+*/
+
+
+/*
+Na standardním vstupu je blíže neurčený počet celočíselných hodnot.
+Je známo, že se jedná o čísla v rozsahu 10 až 1000.
+ Vypište na standardní výstup tabulku četností vstupních čísel, tj.
+ u každého čísla počet jeho výskytů ve vstupní řadě
+
+
+
+int main() {
+ int min = 10;
+ int max = 1000;
+ int vstup;
+ int pocty[1001] = {};
+
+ while(cin>>vstup && vstup >= min && vstup <= max) {
+  pocty[vstup]++;
+ }
+
+ for(int i =min;i < max;i++) {
+  cout<< i << pocty[i] << endl;
+ }
+
+return 0;
+}
+
+
+*/
+
+/*UDELAT ZNOVA
+ *Na standardním vstupu se nacházejí údaje o výrobcích ve skladu: identifikace měrná
+ *jednotka (označení v podobě čísla: 1 -- kusy, 2 --
+ *litry, 3 -- balíky) a množství v měrných jednotkách
+ *(desetinné číslo). Počet vstupních údajů není znám.
+ *Přečtěte tyto informace a uspořádejte je (libovolnou
+ *řadicí metodou) vzestupně podle množství měrných
+ *jednotek. Výsledný seznam vypište na standardní
+ výstup.
+
+
+struct Vyrobek {
+ int id;
+ int merna;
+ int mnozstvi;
+
+};
+
+
+
+int main() {
+
+ Vyrobek sklad[1000];
+
+ int pocet;
+
+ while(cin>>sklad[pocet].id>>sklad[pocet].merna >> sklad[pocet].mnozstvi) {
+  pocet++;
+ }
+
+ for(int i=0;i<pocet-1;i++) {
+  for(int j=0;i<pocet-1;j++) {
+
+   if(sklad[j].mnozstvi > sklad[j+1].mnozstvi) {
+    Vyrobek docasny = sklad[j];
+    sklad[j] = sklad[j+1];
+    sklad[j+1] = docasny;
+   }
+  }
+ }
+
+ for(int i=0;i<pocet;i++) {
+  cout<<sklad[i].id << " ";
+  cout<<sklad[i].merna<< " ";
+  cout<<sklad[i].mnozstvi << " ";
+ }
+
+}
+
+*/
+
+/*
+Na základě textového souboru zamestnanci.txt vytvořte dva nové soubory. Jeden bude
+obsahovat pouze ženy a druhý pouze muže.
+
+
+int main() {
+ ifstream soubor("zamestnanci.txt");
+ ofstream zeny("zeny.txt");
+ ofstream muzi("muzi.txt");
+
+ if(!soubor.is_open()) {
+  cout<<"neco je spatne se souborem(nepodarilo se otevrit)";
+ }
+
+
+ string jmeno;
+ char pohlavi;
+
+ while(soubor>>jmeno>>pohlavi) {
+
+  if(pohlavi == 'Z') {
+   zeny<<jmeno <<endl;
+  }
+  else if(pohlavi == 'M') {
+   muzi<<jmeno <<endl;
+  }
+ }
+
+ soubor.close();
+ zeny.close();
+ muzi.close();
+
+ return 0;
+}
+
+*/
+
+
+/*
+Na standardním vstupu je připravena řada celých čísel zakončená nulou.
+Použijte lineární dynamický jednosměrný seznam v režimu zásobníku pro
+uložení těchto čísel,
+určete počet podprůměrných hodnot a spolu s tímto údajem všechna vstupní
+čísla vypište na standardní výstup v obráceném pořadí.
+*/
+
+
+struct Uzel {
+ int data;
+ Uzel*dalsi;
+};
+
+void Seznam(Uzel*&hlava, int cislo) {
+ Uzel*novy = new Uzel();
+ novy->data = cislo;
+ novy->dalsi = hlava;
+ hlava = novy;
+
+
+}
+
+
+int main() {
+ Uzel*hlava = nullptr;
+ int pocet =0;
+ int suma = 0;
+ int vstup;
+
+ while(cin>> vstup) {
+  Seznam(hlava,vstup);
+  pocet++;
+  suma +=vstup;
+ }
+
+ if(pocet>0) {
+  double prumer = suma / pocet;
+  double podprumerpocet =0;
+
+  Uzel*aktualni =hlava;
+
+  while(aktualni != nullptr) {
+
+   if(aktualni->data <prumer) {
+    podprumerpocet++;
+   }
+   aktualni = aktualni->dalsi;
+  }
+  cout<<"Pocet podprumernych hodnot: " << podprumerpocet <<endl;
+
+  cout<<"vypis cisel: " <<endl;
+  aktualni = hlava;
+  for(int i =0;i<pocet;i++) {
+   cout<< aktualni->data << " ";
+   aktualni = aktualni->dalsi;
+  }
+ }
+ else {
+
+ }
 }
